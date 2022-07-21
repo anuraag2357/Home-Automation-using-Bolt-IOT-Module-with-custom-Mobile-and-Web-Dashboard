@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">     
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>Home Automation Control</title>
+        <script type = "text/javascript" src = "https://cloud.boltiot.com/static/js/boltCommands.js"></script>
+        <script type> "text/javascript">
+            setKey('{{ApiKey}}','{{Name}}');
+        </script>
+
+        <style>
+        html,body{
+        padding-top: 2px;
+        }
+h3{
+    font-family:Itim,handwriting;
+    color:#1ECD97 ;
+    font-size: 16px;
+}
+
+#buttons{
+     float: center;
+     margin-left: 8%;
+     margin-top: 170px;
+     position: relative;
+     padding-top: 100px;
+
+}
+
+
+#Weather{
+
+    margin-right: 90px;
+    float: left;
+    margin-left: 12%;
+    max-width: 500px;
+    padding-top: 170px;
+
+}
+
+#Floor {
+    
+    width: 400px;
+    height: 400px; 
+    
+    position:relative;
+    float: center;
+   
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+
+    border: 3px solid #1ECD97;
+    border-radius: 5px;
+}
+#Phase{
+
+    width: 100%;
+    height: 100%; 
+    padding-bottom: 20px;
+    display: block;    
+
+}
+#R1 {
+    width: 100%;
+    height: 21.25%; 
+    background-color: #3f4245;
+    border: 3px solid #3f4245;  
+    border-radius: 3px;
+    position:relative;
+    transition: 0.3s ease;
+    line-height: 50%;
+    color: #1ECD97;
+    font-family:Itim,handwriting;
+    font-size: 50px;
+
+}    
+#R1:hover{
+    transform: scale(1.05);
+    transition: 0.3s ease;
+    background-color:#505357;
+    border: 3px solid #505357;
+}
+
+#R1.on{
+    background-color: #1ECD97;
+    border: 3px solid #1ECD97;
+    color: #5a5d61;
+}
+
+
+#R2 {
+    width: 100%;
+    height: 21.25%; 
+    margin-top: 20px;
+    background-color: #3f4245;
+    border: 3px solid #3f4245;  
+    border-radius: 3px;
+    position:relative;
+    transition: 0.3s ease;
+    line-height: 50%;
+    color: #1ECD97;
+    font-family:Itim,handwriting;
+    font-size: 50px;
+
+}
+#R2:hover{
+    transform: scale(1.05);
+    transition: 0.3s ease;
+    background-color:#505357;
+    border: 3px solid #505357;
+} 
+
+#R2.on{
+    background-color: #1ECD97;
+    border: 3px solid #1ECD97;
+    color: #5a5d61;
+
+}
+
+#R3 {
+    width: 100%;
+    height: 21.25%; 
+    margin-top: 20px;
+    background-color: #3f4245;
+    border: 3px solid #3f4245;  
+    border-radius: 3px;
+    position:relative;
+    transition: 0.3s ease;
+    line-height: 50%;
+    color: #1ECD97;
+    font-family:Itim,handwriting;
+    font-size: 50px;
+
+}    
+#R3:hover{
+    transform: scale(1.05);
+    transition: 0.3s ease;
+    background-color:#505357;
+    border: 3px solid #505357;
+}
+
+#R3.on{
+    background-color: #1ECD97;
+    border: 3px solid #1ECD97;
+    color: #5a5d61;
+}
+
+
+#R4 {
+    width: 100%;
+    height: 21.25%; 
+    margin-top: 20px;
+    background-color: #3f4245;
+    border: 3px solid #3f4245;  
+    border-radius: 3px;
+    position:relative;
+    transition: 0.3s ease;
+    line-height: 50%;
+    color: #1ECD97;
+    font-family:Itim,handwriting;
+    font-size: 50px;
+
+}
+#R4:hover{
+    transform: scale(1.05);
+    transition: 0.3s ease;
+    background-color:#505357;
+    border: 3px solid #505357;
+} 
+
+#R4.on{
+    background-color: #1ECD97;
+    border: 3px solid #1ECD97;
+    color: #5a5d61;
+}
+
+#Extra{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+
+    margin-top: 40px;
+    
+}
+
+#shutbtn{
+    background-color: #393E46;
+    color: white;
+    padding: 16px;
+    font-size: 20px;
+    border: 3px solid #ff0000;
+    cursor: pointer;
+    width: 300px;
+    height: 80px;
+    margin: 0px;
+    border-radius: 12px;
+
+    margin-left: 20px;
+    margin-top: 20px;
+}
+#shutbtn:hover {
+  background-color: #5b5f66;
+}
+
+#motionbtn{
+    background-color: #393E46;
+    color: white;
+    padding: 16px;
+    font-size: 20px;
+    border: 3px solid #1100ff;
+    cursor: pointer;
+    width: 300px;
+    height: 80px;
+    margin: 0px;
+    border-radius: 12px;
+
+    margin-left: 20px;
+    margin-top: 20px;
+   
+}
+#motionbtn:hover {
+  background-color: #5b5f66;
+}
+
+#alrt{
+    margin-left: 520px;
+    margin-bottom: 20px;
+}
+
+#api{
+    background-color: #393E46;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+    height: 10px;
+    margin-left: 20px;
+    border-radius: 12px;
+    outline: none;
+}
+
+#device{
+    background-color: #393E46;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+    height: 10px;
+    margin-left: 20px;
+    border-radius: 12px;
+    outline: none;
+}
+
+/* Button */
+.apibtn {
+  background: transparent;
+  width: 90px;
+  position: relative;
+  padding: 10px;
+  color: #1ECD97;
+  cursor: pointer;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  transition: all 50ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  border-radius: 4px;
+  font-weight: 30;
+  overflow: hidden;
+  border: 2px solid #1ECD97;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+/* In Progress Button */
+.apibtn-progress {
+  width: 90px;
+  color: transparent;
+}
+
+.apibtn-fill:after {
+  content: "";
+  background: #1ECD97;
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0;
+  display: block;
+  animation: fill 3.2s linear forwards;
+}
+
+/* Button Complete */
+.apibtn-complete {
+  padding: 10px;
+  width: 90px;
+  color: #fff;
+  pointer-events: none;
+}
+
+.apibtn-complete:after {
+  font-family: FontAwesome;
+  content: "\f00c";
+  color: #fff;
+  height: 100%;
+  padding-left: 3px;
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1ECD97;
+}
+
+/* Animation */
+@keyframes fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+
+
+/* Button 2*/
+.devbtn {
+  background: transparent;
+  width: 90px;
+  position: relative;
+  padding: 10px;
+  color: #1ECD97;
+  cursor: pointer;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  transition: all 50ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  border-radius: 4px;
+  font-weight: 30;
+  overflow: hidden;
+  border: 2px solid #1ECD97;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+/* In Progress Button */
+.devbtn-progress {
+  width: 90px;
+  color: transparent;
+}
+
+.devbtn-fill:after {
+  content: "";
+  background: #1ECD97;
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0;
+  display: block;
+  animation: fill 3.2s linear forwards;
+}
+
+/* Button Complete */
+.devbtn-complete {
+  padding: 10px;
+  width: 90px;
+  color: #fff;
+  pointer-events: none;
+}
+
+.devbtn-complete:after {
+  font-family: FontAwesome;
+  content: "\f00c";
+  color: #fff;
+  height: 100%;
+  padding-left: 3px;
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1ECD97;
+}
+
+/* Animation */
+@keyframes fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+        </style>
+
+
+        <script type="text/javascript">
+            
+function isOnline() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var obj = JSON.parse(xmlhttp.responseText);
+            if(obj.success=="1"){
+                if (obj.value == "online"){
+                    ReadAll();
+                    document.getElementById('motionbtn').innerHTML='Online!'; 
+                    setTimeout(function() {document.getElementById('motionbtn').innerHTML='Check Status';},2000);
+                }
+                else if (obj.value == "offline"){
+                // alert("Device is Offline");
+                    document.getElementById('motionbtn').innerHTML='Offline!'; 
+                    setTimeout(function() {document.getElementById('motionbtn').innerHTML='Check Status';},2000);
+                }
+            }
+            else if(obj.success=="0"){
+                alert(obj.value);
+            }
+        }
+    };
+    xmlhttp.open("GET",base_url+api_key+"/isOnline?&deviceName="+d_name,true);
+    xmlhttp.send();
+}
+
+
+function ReadAll(){
+    if (window.localStorage.getItem('R1') == 'on'){
+        document.getElementById("R1").classList.add("on"); 
+    }
+    if (window.localStorage.getItem('R2') == 'on'){
+        document.getElementById("R2").classList.add("on"); 
+    }
+    if (window.localStorage.getItem('R3') == 'on'){
+        document.getElementById("R3").classList.add("on"); 
+    }
+    if (window.localStorage.getItem('R4') == 'on'){
+        document.getElementById("R4").classList.add("on"); 
+    }  
+
+}
+
+
+
+function R1(){
+
+    var R1 = document.getElementById('R1');
+
+
+        if (R1.classList.contains("on")){
+        digitalWrite(1,'LOW');
+        document.getElementById("R1").classList.remove("on");
+        localStorage.removeItem("R1"); 
+
+        
+        }
+        else {
+            digitalWrite(1,'HIGH');
+            document.getElementById("R1").classList.add("on");
+            window.localStorage.setItem("R1", "on");
+      
+        }
+
+
+}
+
+
+function R2(){
+
+    var R2 = document.getElementById('R2');
+
+        if (R2.classList.contains("on")){
+        digitalWrite(2,'LOW');
+        document.getElementById("R2").classList.remove("on");
+        localStorage.removeItem("R2"); 
+        
+        }
+        else {
+            digitalWrite(2,'HIGH');
+            document.getElementById("R2").classList.add("on");  
+            window.localStorage.setItem("R2", "on");
+    
+        }
+    
+}
+
+function R3(){
+
+var R3 = document.getElementById('R3');
+
+    if (R3.classList.contains("on")){
+    digitalWrite(3,'LOW');
+    document.getElementById("R3").classList.remove("on");
+    localStorage.removeItem("R3"); 
+    
+    }
+    else {
+        digitalWrite(3,'HIGH');
+        document.getElementById("R3").classList.add("on");  
+        window.localStorage.setItem("R3", "on");
+
+    }
+
+}
+
+function R4(){
+
+var R4 = document.getElementById('R4');
+
+    if (R4.classList.contains("on")){
+    digitalWrite(4,'LOW');
+    document.getElementById("R4").classList.remove("on");
+    localStorage.removeItem("R4"); 
+    
+    }
+    else {
+        digitalWrite(4,'HIGH');
+        document.getElementById("R4").classList.add("on");  
+        window.localStorage.setItem("R4", "on");
+
+    }
+
+}
+
+
+
+function SHUT(){
+    digitalWrite(1,'LOW');
+    digitalWrite(2,'LOW');
+    digitalWrite(3,'LOW');
+    digitalWrite(4,'LOW');
+    document.getElementById("R1").classList.remove("on");
+    document.getElementById("R2").classList.remove("on");
+    document.getElementById("R3").classList.remove("on");
+    document.getElementById("R4").classList.remove("on");
+    localStorage.removeItem("R1");
+    localStorage.removeItem("R2");
+    localStorage.removeItem("R3");
+    localStorage.removeItem("R4");
+
+}
+
+isOnline();
+
+        </script>
+        
+
+
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css'>
+        
+        <link href='https://fonts.googleapis.com/css?family=Nova Flat' rel='stylesheet'>
+        <link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+               
+      
+    </head>
+    <body style="background: #141c0e;">
+    <h1 style="color: rgb(24, 196, 61); text-align: center;" >HOME AUTOMATION CONTROL</h1>
+    
+      <center style ="display: flex; flex-direction: row; justify-content: center;">
+        
+          <div id="Floor">
+            <div id = "Phase">
+                <button id="R1" onclick = "R1()">LIGHT-1</button>
+                <button id="R2" onclick = "R2()">FAN</button>
+                <button id="R3" onclick = "R3()">LIGHT-2</button>
+                <button id="R4" onclick = "R4()">NIGHT LAMP</button>
+            </div>
+        </div>  
+     </center> 
+    
+     <center style ="display: flex; flex-direction: row; justify-content: center;">
+       <div id = "Extra">
+             <button onclick="SHUT()" id="shutbtn">EMERGENCY SHUT DOWN</button>
+             <button onclick="isOnline()" id="motionbtn">CHECK STATUS</button>
+        </div>
+    </center> 
+    </body>
+
+</html>
